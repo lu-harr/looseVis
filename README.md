@@ -7,6 +7,8 @@ new visualisations. To this end, I'm putting all of my cheat functions for plott
 with R base graphics in one place and learning how to write an R package in one fell 
 swoop. With thanks to <https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/>
 
+Simply conjure her up with `install_github("lu-harr/looseVis")`
+
 Now with added:
 
 - `fairy_circle_labels()` for positioning labels in a circle around points on a map
