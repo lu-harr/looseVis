@@ -1,6 +1,6 @@
-###looseVis
+### looseVis
 
-####A Cheeky Package To Save Me Time With Base Graphics
+#### A Cheeky Package To Save Me Time With Base Graphics
 
 I would like to stop copy-pasting old code for visualisations and start writing 
 new visualisations. To this end, I'm putting all of my cheat functions for plotting 
