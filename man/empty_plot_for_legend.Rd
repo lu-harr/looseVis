@@ -4,7 +4,12 @@
 \alias{empty_plot_for_legend}
 \title{Reset the plotting window}
 \usage{
-empty_plot_for_legend()
+empty_plot_for_legend(new = FALSE, ...)
+}
+\arguments{
+\item{new}{Boolean: Put empty plot over existing plotting window?}
+
+\item{...}{any argument that can be passed to \code{par()}, including \code{mfrow}, \code{mar}, and \code{oma}. Only used if \code{new == TRUE}.}
 }
 \value{
 TRUE

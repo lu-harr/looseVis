@@ -14,3 +14,8 @@ Now with added:
 - `fairy_circle_labels()` for positioning labels in a circle around points on a map
 - `subfigure_label()` for adding labels to a plot with common plotting coordinates
 - `empty_plot_for_legend()` for resetting a (complicated) plotting window so you can draw things right on top of it
+
+And coming soon:
+
+- A wrapper for raster colour-bar legend with the option of custom axis labels and positioning
+- Some sort of conversation with ggplot
