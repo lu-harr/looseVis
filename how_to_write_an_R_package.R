@@ -4,14 +4,14 @@
 library(devtools)
 library(roxygen2)
 setwd("~/")
-create("greta.gp.st.on.earth")
+create("looseVis")
 
 # add all your functions into R/ and document them with roxygen skeletons
 
-setwd("~/greta.gp.st.on.earth")
+setwd("~/looseVis")
 document()
 
 # now install!
 setwd("..")
-install("greta.gp.st.on.earth")
-library(greta.gp)
+install("looseVis")
+library(looseVis)
