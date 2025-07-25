@@ -3,4 +3,5 @@
 export(empty_plot_for_legend)
 export(fairy_circle_labels)
 export(my_simple_dist)
+export(scale_cex)
 export(subfigure_label)
