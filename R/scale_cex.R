@@ -5,7 +5,7 @@
 #' other things.
 #'
 #' @param from vector of numerics
-#' @param trans function that takes a numeric as input, e.g., `log10`, `exp`, `sqrt`, ...
+#' @param trans NULL or function that takes a numeric as input, e.g., `log10`, `exp`, `sqrt`, ...
 #' @param min_cex numeric, >= 0 & <= `max_cex`
 #' @param max_cex numeric, >= 0 & >= `min_cex`
 #'
@@ -15,19 +15,21 @@
 #' @examples 
 #' x <- rexp(100)
 #' scaled_cex <- scale_cex(x, log10)
-scale_cex <- function(from, trans = log10, min_cex = 0.5, max_cex = 1){
+scale_cex <- function(from, trans = NULL, min_cex = 0.5, max_cex = 1){
   
-  if (trans(0) == -Inf & min(from) <= 0){
-    message("Kindly don't ask me to log things I would rather not")
-    return(TRUE)
+  if (!is.null(trans)){
+    if (trans(0) == -Inf & min(from) <= 0){
+      message("Kindly don't ask me to log things I don't want to log")
+      return(FALSE)
+    }
+    
+    if (suppressWarnings(is.nan(trans(-1))) & min(from) < 0){
+      message("Nup sorry no can do")
+      return(FALSE)
+    }
+    from <- trans(from)
   }
   
-  if (is.nan(trans(-1)) & min(from) < 0){
-    message("Nup sorry no can do")
-    return(TRUE)
-  }
-  
-  to <- trans(from)
-  to <- (to - min(to)) / (max(to) - min(to))
+  to <- (from - min(from)) / (max(from) - min(from))
   to * (max_cex - min_cex) + min_cex
 }

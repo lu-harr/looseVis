@@ -4,12 +4,12 @@
 \alias{scale_cex}
 \title{Scale value for point size (for example)}
 \usage{
-scale_cex(from, trans = log10, min_cex = 0.5, max_cex = 1)
+scale_cex(from, trans = NULL, min_cex = 0.5, max_cex = 1)
 }
 \arguments{
 \item{from}{vector of numerics}
 
-\item{trans}{function that takes a numeric as input, e.g., \code{log10}, \code{exp}, \code{sqrt}, ...}
+\item{trans}{NULL or function that takes a numeric as input, e.g., \code{log10}, \code{exp}, \code{sqrt}, ...}
 
 \item{min_cex}{numeric, >= 0 & <= \code{max_cex}}
 
