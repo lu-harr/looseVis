@@ -1,4 +1,4 @@
-#' iddo palettes
+#' loose palettes
 #'
 #' Palettes for looseVis
 #'
