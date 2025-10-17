@@ -5,7 +5,7 @@
 #' @param sites A two-column data.frame of longitudes and latitudes of the sites to be labelled, in label order
 #' @param centre A vector of length 2, giving coordinates of the middle of our fairy circle
 #' @param label_radius The radius of our circle (e.g., in decimal degrees)
-#' @param ranked_names A vector of labels to add, in label order. (e.g., 1:nrow(sites))
+#' @param site_names A vector of labels to add, in label order. (e.g., 1:nrow(sites))
 #' @param rank_cutoff Would you like to label not all of the sites? Either FALSE or a numeric. Defaults to FALSE.
 #' @param n_toadstools A numeric indicating the number of possible locations for labels on our fairy circle. Should be greater than the number of labels. Defaults to 65.
 #' @param gap A numeric between 0 and 1 indicating outer endpoint of label line, as proportion of label_radius. Defaults to 0.95.
@@ -16,12 +16,12 @@
 #' @keywords labels
 #' @export
 #' @examples
-#' fairy_circle_labels(sites[sel,], label_radius = (plot_box[2] - plot_box[1])/2*0.9, centre = c(112.5, 0), ranked_names = sel, rank_cutoff = FALSE, n_toadstools = 80)
+#' fairy_circle_labels(sites[sel,], label_radius = (plot_box[2] - plot_box[1])/2*0.9, centre = c(112.5, 0), site_names = sel, rank_cutoff = FALSE, n_toadstools = 80)
 
 fairy_circle_labels = function(sites, 
                                centre, 
                                label_radius,
-                               ranked_names, 
+                               site_names, 
                                rank_cutoff = FALSE, 
                                n_toadstools = 65, 
                                gap = 0.95, 
@@ -37,7 +37,7 @@ fairy_circle_labels = function(sites,
   
   # impose (optional) supplied cutoff
   if (rank_cutoff){  
-    ranked_combs = ranked_combs[1:rank_cutoff,]
+    sites = sites[1:rank_cutoff,]
   }
   
   angles = (1:n_toadstools)*2*pi/n_toadstools
@@ -59,10 +59,10 @@ fairy_circle_labels = function(sites,
   # keep track of occupied positions in the circle
   taken_coords = c() 
   
-  for (i in 1:nrow(ranked_sites)){
+  for (i in 1:nrow(sites)){
     # find distance from point to all possible label locations
-    dists_to_circle = my_simple_dist(circle_coords, c(ranked_sites[i,1],
-                                                      ranked_sites[i,2]))
+    dists_to_circle = my_simple_dist(circle_coords, c(sites[i,1],
+                                                      sites[i,2]))
     # find closest label
     up = which(dists_to_circle == min(dists_to_circle))
     down = up
@@ -84,10 +84,10 @@ fairy_circle_labels = function(sites,
     taken_coords = c(taken_coords, tmp)
     
     # we're ready to add to the plot!
-    text(outpoint_label, labels=ranked_names[i], 
+    text(outpoint_label, labels=site_names[i], 
          col=lab_col, cex=lab_cex)
-    lines(c(ranked_sites[i,1], outpoint[1]), 
-          c(ranked_sites[i,2], outpoint[2]), 
+    lines(c(sites[i,1], outpoint[1]), 
+          c(sites[i,2], outpoint[2]), 
           col=line_col, lwd=line_lwd)
   }
 }
