@@ -13,8 +13,8 @@ fairy_circle_labels(
   n_toadstools = 65,
   gap = 0.95,
   guides = FALSE,
-  line_col = "red",
-  lab_col = "red",
+  line_col = "black",
+  lab_col = "black",
   lab_cex = 1,
   line_lwd = 1
 )

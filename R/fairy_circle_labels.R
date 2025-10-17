@@ -26,8 +26,8 @@ fairy_circle_labels = function(sites,
                                n_toadstools = 65, 
                                gap = 0.95, 
                                guides = FALSE,
-                               line_col = "red", 
-                               lab_col = "red",
+                               line_col = "black", 
+                               lab_col = "black",
                                lab_cex = 1,
                                line_lwd = 1){
   # possibly the most geniusest piece of code the author has ever written
@@ -84,8 +84,12 @@ fairy_circle_labels = function(sites,
     taken_coords = c(taken_coords, tmp)
     
     # we're ready to add to the plot!
-    text(outpoint_label, labels=site_names[i], 
-         col=lab_col, cex=lab_cex)
+    text(outpoint_label, 
+         labels = site_names[i], 
+         col = lab_col, 
+         cex = lab_cex,
+         pos = ifelse(angles[tmp] > pi / 2 & angles[tmp] < 3 * pi / 2,
+                      2, 4))
     lines(c(sites[i,1], outpoint[1]), 
           c(sites[i,2], outpoint[2]), 
           col=line_col, lwd=line_lwd)
