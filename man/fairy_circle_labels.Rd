@@ -8,7 +8,7 @@ fairy_circle_labels(
   sites,
   centre,
   label_radius,
-  ranked_names,
+  site_names,
   rank_cutoff = FALSE,
   n_toadstools = 65,
   gap = 0.95,
@@ -26,7 +26,7 @@ fairy_circle_labels(
 
 \item{label_radius}{The radius of our circle (e.g., in decimal degrees)}
 
-\item{ranked_names}{A vector of labels to add, in label order. (e.g., 1:nrow(sites))}
+\item{site_names}{A vector of labels to add, in label order. (e.g., 1:nrow(sites))}
 
 \item{rank_cutoff}{Would you like to label not all of the sites? Either FALSE or a numeric. Defaults to FALSE.}
 
@@ -44,6 +44,6 @@ fairy_circle_labels(
 A function to arrange map labels in a circle around a shape. For each label, finds closest point on circle. Should be called after base map is produced.
 }
 \examples{
-fairy_circle_labels(sites[sel,], label_radius = (plot_box[2] - plot_box[1])/2*0.9, centre = c(112.5, 0), ranked_names = sel, rank_cutoff = FALSE, n_toadstools = 80)
+fairy_circle_labels(sites[sel,], label_radius = (plot_box[2] - plot_box[1])/2*0.9, centre = c(112.5, 0), site_names = sel, rank_cutoff = FALSE, n_toadstools = 80)
 }
 \keyword{labels}

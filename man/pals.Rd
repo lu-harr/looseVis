@@ -3,7 +3,7 @@
 \docType{data}
 \name{pals}
 \alias{pals}
-\title{iddo palettes}
+\title{loose palettes}
 \format{
 \subsection{\code{pals}}{
 
