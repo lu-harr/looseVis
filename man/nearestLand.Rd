@@ -19,7 +19,7 @@ data.frame
 \description{
 Pinched from seegSDM which hasn't been maintained
 https://github.com/SEEG-Oxford/seegSDM/blob/master/R/seegSDM.R
-Written for raster but works fine with terra
+Written for raster - this version converted for terra
 (I use this function all the time !)
 }
 \details{

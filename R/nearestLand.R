@@ -4,7 +4,7 @@
 #' 
 #' Pinched from seegSDM which hasn't been maintained
 #' https://github.com/SEEG-Oxford/seegSDM/blob/master/R/seegSDM.R
-#' Written for raster but works fine with terra
+#' Written for raster - this version converted for terra
 #' (I use this function all the time !)
 #' 
 #' There is now the search_radius argument in terra::extract, but this doesn't
@@ -30,7 +30,7 @@ nearestLand <- function (points, raster, max_distance) {
   
   # function to find nearest of a set of neighbours or return NA
   nearest <- function (lis, raster) {
-    neighbours <- matrix(lis[[1]], ncol = 2)
+    neighbours <- as.matrix(lis[[1]], ncol = 2)
     point <- lis[[2]]
     # neighbours is a two column matrix giving cell numbers and values
     land <- !is.na(neighbours[, 2])
@@ -39,7 +39,7 @@ nearestLand <- function (points, raster, max_distance) {
       return (c(NA, NA))
     } else{
       # otherwise get the land cell coordinates
-      coords <- xyFromCell(raster, neighbours[land, 1])
+      coords <- terra::xyFromCell(raster, neighbours[land, 1])
       
       if (nrow(coords) == 1) {
         # if there's only one, return it
@@ -56,16 +56,29 @@ nearestLand <- function (points, raster, max_distance) {
   }
   
   # extract cell values within max_distance of the points
-  neighbour_list <- extract(raster, points,
-                            buffer = max_distance,
-                            cellnumbers = TRUE)
-  
-  # add the original point in there too
-  neighbour_list <- lapply(1:nrow(points),
-                           function(i) {
-                             list(neighbours = neighbour_list[[i]],
-                                  point = as.numeric(points[i, ]))
-                           })
+  neighbour_list <- lapply(1:nrow(points), function(i){
+    pt <- vect(points[i,], geom = names(points), crs = crs(raster))
+    buf <- buffer(pt, width = max_distance)
+    cell_ids <- cells(raster, buf)[, "cell"]
+    
+    list(neighbours = data.frame(cell = cell_ids, 
+                    value = unlist(terra::extract(raster, cell_ids))),
+         # add the original point in there too
+         point = crds(pt)
+    )
+  })
   
   return (t(sapply(neighbour_list, nearest, raster)))
 }
+
+
+
+
+
+
+
+
+
+
+
+
