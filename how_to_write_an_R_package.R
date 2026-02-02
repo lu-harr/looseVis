@@ -3,8 +3,8 @@
 
 library(devtools)
 library(roxygen2)
-setwd("~/")
-create("looseVis")
+# setwd("~/")
+# create("looseVis")
 
 # add all your functions into R/ and document them with roxygen skeletons
 

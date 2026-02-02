@@ -3,6 +3,7 @@
 export(empty_plot_for_legend)
 export(fairy_circle_labels)
 export(my_simple_dist)
+export(nearestLand)
 export(rast_plot)
 export(rast_to_df)
 export(scale_cex)
